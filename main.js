@@ -1,6 +1,6 @@
 const context = new AudioContext();
 const socket = new WebSocket(
-    "ws://sound-room-server-production.up.railway.app:9160"
+    "wss://sound-room-server-production.up.railway.app"
 );
 const eventTypes = [
     "cheer",
