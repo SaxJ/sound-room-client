@@ -12,7 +12,7 @@ body {
   right: 0px;
 }
 
-button {
+.buttons button {
   font-size: 100px;
   background-color: transparent;
   border-radius: 5px;
@@ -25,4 +25,22 @@ button {
   margin: 0 auto;
   max-width: 800px;
   flex-flow: row wrap;
+}
+
+.inputs {
+  margin-bottom: 20px;
+}
+
+.inputs input {
+  font-size: 18px;
+  width: 400px;
+  text-align: center;
+}
+
+.inputs button {
+  font-size: 18px;
+}
+
+#connect {
+  margin-left: 30px;
 }
