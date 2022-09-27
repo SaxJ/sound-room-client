@@ -2,6 +2,7 @@ let socket;
 function startSocket() {
     socket = new WebSocket("wss://sound-room-server-production.up.railway.app");
 }
+startSocket();
 
 const context = new AudioContext();
 const eventTypes = [
