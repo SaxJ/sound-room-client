@@ -1,8 +1,20 @@
-let socket;
-const roomInput = document.getElementById("room");
+const roomName = window.location.hash.substring(1);
+const eventTypes = [
+  "astonished",
+  "cheer",
+  "clap",
+  "cry",
+  "laugh",
+  "woof",
+  "quack",
+  "boo",
+  "wolf",
+  "drum",
+  "lame",
+];
 
+let socket;
 function startSocket() {
-  const roomName = roomInput.getAttribute("value");
   socket = new WebSocket(
     /*`ws://localhost:9160/${roomName}`*/
     `wss://sound-room-server-production.up.railway.app/${roomName}`
@@ -27,31 +39,15 @@ function startSocket() {
     document.getElementById("status").innerText = "error";
   });
 }
+startSocket();
 
-const context = new AudioContext();
-const eventTypes = [
-  "astonished",
-  "cheer",
-  "clap",
-  "cry",
-  "laugh",
-  "woof",
-  "quack",
-  "boo",
-  "wolf",
-  "drum",
-  "lame",
-];
+document.getElementById("generate").addEventListener("click", () => {
+  id = crypto.randomUUID();
+  window.location.href = `/#${id}`;
+});
 
 eventTypes.forEach((type) => {
   document.getElementById(type).addEventListener("click", () => {
     socket.send(type);
   });
 });
-
-document.getElementById("generate").addEventListener("click", () => {
-  id = crypto.randomUUID();
-  roomInput.setAttribute("value", id);
-});
-
-document.getElementById("connect").addEventListener("click", startSocket);
