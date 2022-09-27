@@ -4,7 +4,8 @@ const roomInput = document.getElementById("room");
 function startSocket() {
   const roomName = roomInput.getAttribute("value");
   socket = new WebSocket(
-    `wss:sound-room-server-production.up.railway.app/${roomName}`
+    /*`ws://localhost:9160/${roomName}`*/
+    `wss://sound-room-server-production.up.railway.app/${roomName}`
   );
 
   socket.addEventListener("open", () => {
