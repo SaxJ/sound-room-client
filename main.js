@@ -44,6 +44,7 @@ startSocket();
 document.getElementById("generate").addEventListener("click", () => {
   id = crypto.randomUUID();
   window.location.href = `/#${id}`;
+  window.location.reload();
 });
 
 eventTypes.forEach((type) => {
