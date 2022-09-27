@@ -29,6 +29,7 @@ function startSocket() {
 
 const context = new AudioContext();
 const eventTypes = [
+  "astonished",
   "cheer",
   "clap",
   "cry",
