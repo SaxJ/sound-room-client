@@ -1,7 +1,9 @@
+let socket;
+function startSocket() {
+    socket = new WebSocket("wss://sound-room-server-production.up.railway.app");
+}
+
 const context = new AudioContext();
-const socket = new WebSocket(
-    "wss://sound-room-server-production.up.railway.app"
-);
 const eventTypes = [
     "cheer",
     "clap",
@@ -27,6 +29,7 @@ socket.addEventListener("open", () => {
 
 socket.addEventListener("close", () => {
     document.getElementById("status").innerText = "disconnected";
+    setTimeout(() => startSocket(), 1000);
 });
 
 socket.addEventListener("message", (event) => {
