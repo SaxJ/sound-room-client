@@ -16,7 +16,7 @@ const eventTypes = [
 let socket;
 function startSocket() {
   socket = new WebSocket(
-    /*`ws://localhost:9160/${roomName}`*/
+    //`ws://localhost:9160/${roomName}`
     `wss://sound-room-server-production.up.railway.app/${roomName}`
   );
 
