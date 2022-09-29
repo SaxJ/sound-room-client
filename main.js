@@ -10,6 +10,7 @@ const eventTypes = [
   "boo",
   "wolf",
   "drum",
+  "airhorn",
   "lame",
 ];
 
