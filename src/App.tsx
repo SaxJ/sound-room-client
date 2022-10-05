@@ -21,6 +21,9 @@ const audioFiles: Record<string, string> = {
     fart: "fart.wav",
     lame: "lame.wav",
     laugh: "laugh.wav",
+    rofl: "rofl.wav",
+    lol: "lol.wav",
+    santa: "santa.wav",
     quack: "quack.wav",
     wolf: "wolf.wav",
     woof: "woof.wav",
@@ -85,20 +88,29 @@ const App: Component = () => {
                     <button onClick={() => socket.send(`clap;${getMyPitch()}`)}>
                         👏
                     </button>
+                    <button onClick={() => socket.send(`astonished;${getMyPitch()}`)}>
+                        😲
+                    </button>
                     <button onClick={() => socket.send(`cry;${getMyPitch()}`)}>
                         😢
                     </button>{" "}
                     <button onClick={() => socket.send(`laugh;${getMyPitch()}`)}>
+                        😂
+                    </button>
+                    <button onClick={() => socket.send(`rofl;${getMyPitch()}`)}>
                         🤣
+                    </button>{" "}
+                    <button onClick={() => socket.send(`lol;${getMyPitch()}`)}>
+                        😜
+                    </button>
+                    <button onClick={() => socket.send(`santa;${getMyPitch()}`)}>
+                        🎅
                     </button>
                     <button onClick={() => socket.send(`woof;${getMyPitch()}`)}>
                         🐶
                     </button>{" "}
                     <button onClick={() => socket.send(`quack;${getMyPitch()}`)}>
                         🦆
-                    </button>
-                    <button onClick={() => socket.send(`astonished;${getMyPitch()}`)}>
-                        😲
                     </button>
                     <button onClick={() => socket.send(`boo;${getMyPitch()}`)}>
                         👎
