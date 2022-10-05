@@ -84,13 +84,13 @@ const App: Component = () => {
                     <button onClick={() => socket.send(`clap;${getMyPitch()}`)}>
                         👏
                     </button>
-                    <button onClick={() => socket.send(`cheer;${getMyPitch()}`)}>
+                    <button onClick={() => socket.send(`cry;${getMyPitch()}`)}>
                         😢
                     </button>{" "}
                     <button onClick={() => socket.send(`laugh;${getMyPitch()}`)}>
                         🤣
                     </button>
-                    <button onClick={() => socket.send(`cheer;${getMyPitch()}`)}>
+                    <button onClick={() => socket.send(`woof;${getMyPitch()}`)}>
                         🐶
                     </button>{" "}
                     <button onClick={() => socket.send(`quack;${getMyPitch()}`)}>
@@ -99,12 +99,20 @@ const App: Component = () => {
                     <button onClick={() => socket.send(`astonished;${getMyPitch()}`)}>
                         😲
                     </button>
-                    <button onClick={() => socket.send(`boo;${getMyPitch()}`)}>👎</button>{" "}
+                    <button onClick={() => socket.send(`boo;${getMyPitch()}`)}>
+                        👎
+                    </button>{" "}
                     <button onClick={() => socket.send(`wolf;${getMyPitch()}`)}>
                         🐺
                     </button>
                     <button onClick={() => socket.send(`drum;${getMyPitch()}`)}>
                         🥁
+                    </button>{" "}
+                    <button onClick={() => socket.send(`airhorn;${getMyPitch()}`)}>
+                        📣
+                    </button>
+                    <button onClick={() => socket.send(`punch;${getMyPitch()}`)}>
+                        👊
                     </button>{" "}
                     <button onClick={() => socket.send(`lame;${getMyPitch()}`)}>
                         🤡
