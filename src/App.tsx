@@ -18,6 +18,7 @@ const audioFiles: Record<string, string> = {
     drum: "drum.wav",
     airhorn: "airhorn.wav",
     punch: "punch.wav",
+    fart: "fart.wav",
     lame: "lame.wav",
     laugh: "laugh.wav",
     quack: "quack.wav",
@@ -113,6 +114,9 @@ const App: Component = () => {
                     </button>
                     <button onClick={() => socket.send(`punch;${getMyPitch()}`)}>
                         👊
+                    </button>
+                    <button onClick={() => socket.send(`fart;${getMyPitch()}`)}>
+                        💨
                     </button>{" "}
                     <button onClick={() => socket.send(`lame;${getMyPitch()}`)}>
                         🤡
