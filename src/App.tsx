@@ -70,9 +70,9 @@ const App: Component = () => {
                     <span style="float: right;">Higher</span>
                     <input
                         type="range"
-                        min={-50}
-                        max={50}
-                        onChange={(e) => setMyPitch(Number(e.currentTarget.value))}
+                        min={-100}
+                        max={100}
+                        onChange={(e) => setMyPitch(Number(e.currentTarget.value) / 10)}
                     />
                 </div>
                 <div class={styles.buttons}>
