@@ -1,0 +1,93 @@
+.App {
+  text-align: center;
+}
+
+.logo {
+  animation: logo-spin infinite 20s linear;
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.link {
+  color: #b318f0;
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.status {
+  text-transform: uppercase;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+.button {
+  font-size: 100px;
+  background-color: transparent;
+  border-radius: 5px;
+  margin: 8px;
+  flex: 1;
+}
+
+.buttons {
+  display: flex;
+  margin: 0 auto;
+  max-width: 800px;
+  flex-flow: row wrap;
+}
+
+.buttons button {
+  font-size: 100px;
+  margin: 10px;
+  flex-grow: 1;
+}
+
+.inputs {
+  margin-bottom: 20px;
+}
+
+.inputs input {
+  font-size: 18px;
+  width: 400px;
+  text-align: center;
+}
+
+.inputs button {
+  font-size: 18px;
+}
+
+.connect {
+  margin-left: 30px;
+}
+
+a {
+  color: white;
+  text-decoration: underline;
+}
+
+.pitchBox {
+  width: 800px;
+  height: 200px;
+}
+
+.pitchBox input {
+  width: 800px;
+}
