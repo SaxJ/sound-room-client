@@ -39,12 +39,22 @@
   right: 0px;
 }
 
-.button {
-  font-size: 100px;
-  background-color: transparent;
-  border-radius: 5px;
-  margin: 8px;
+.sliders {
+  display: flex;
+  margin: 0 auto;
+  max-width: 800px;
+  flex-flow: row wrap;
+}
+
+.sliders .slider {
   flex: 1;
+  margin: 20px;
+  flex-grow: 1;
+}
+
+.slider input {
+  height: 50px;
+  width: 100%;
 }
 
 .buttons {
@@ -56,8 +66,15 @@
 
 .buttons button {
   font-size: 100px;
+  border: 8px outset;
+  border-radius: 20px;
   margin: 10px;
   flex-grow: 1;
+  transition: all 1s ease-in-out 1s;
+}
+
+.buttons button:active {
+  border-style: inset;
 }
 
 .inputs {
@@ -81,13 +98,4 @@
 a {
   color: white;
   text-decoration: underline;
-}
-
-.pitchBox {
-  width: 800px;
-  height: 200px;
-}
-
-.pitchBox input {
-  width: 800px;
 }

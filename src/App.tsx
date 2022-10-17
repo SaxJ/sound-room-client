@@ -3,7 +3,7 @@ import { Component, createSignal } from "solid-js";
 import logo from "./logo.svg";
 import styles from "./App.module.css";
 import * as Tone from "tone";
-import { PitchShift, Player, Players } from "tone";
+import { PitchShift, Player, Volume } from "tone";
 
 const audioLoaded = () => {
     console.log("audio files loaded");
@@ -50,10 +50,13 @@ const App: Component = () => {
         const blob: Blob = event.data;
         const msg: string = await blob.text();
         const [sound, pitch] = msg.split(";");
+        const volumeInput = (document.getElementById('volume') as HTMLInputElement)?.value;
+        const volumeVal = (Number(volumeInput ?? 5) * 5) - 50;
         const player = new Player(audioFiles[sound]);
         player.autostart = true;
-        const shifter = new PitchShift(Number(pitch)).toDestination();
-        player.connect(shifter);
+        const volume = new Volume(volumeVal);
+        const pitchShift = new PitchShift(Number(pitch));
+        player.chain(volume, pitchShift, Tone.Destination);
     });
     socket.addEventListener("error", () => setRoomStatus("error"));
 
@@ -70,16 +73,30 @@ const App: Component = () => {
                         URL for others to join your room
                     </p>
                 </div>
-                <div class={styles.pitchBox}>
-                    <p>Adjust your voice</p>
-                    <span style="float: left;">Lower</span>
-                    <span style="float: right;">Higher</span>
-                    <input
-                        type="range"
-                        min={-100}
-                        max={100}
-                        onChange={(e) => setMyPitch(Number(e.currentTarget.value) / 10)}
-                    />
+                <div class={styles.sliders}>
+                    <div class={styles.slider}>
+                        <p>Pitch</p>
+                        <span style="float: left;">💁‍♀️ Lower</span>
+                        <span style="float: right;">Higher 💁‍♂️</span>
+                        <input
+                            type="range"
+                            min={-100}
+                            max={100}
+                            onChange={(e) => setMyPitch(Number(e.currentTarget.value) / 10)}
+                        />
+                    </div>
+                    <div class={styles.slider}>
+                        <p>Volume</p>
+                        <span style="float: left;">🔈 Quieter</span>
+                        <span style="float: right;">Louder 🔊</span>
+                        <input
+                            id="volume"
+                            type="range"
+                            min={0}
+                            max={10}
+                            value={5}
+                        />
+                    </div>
                 </div>
                 <div class={styles.buttons}>
                     <button onClick={() => socket.send(`cheer;${getMyPitch()}`)}>
