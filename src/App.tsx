@@ -76,8 +76,8 @@ const App: Component = () => {
                 <div class={styles.sliders}>
                     <div class={styles.slider}>
                         <p>Pitch</p>
-                        <span style="float: left;">💁‍♀️ Lower</span>
-                        <span style="float: right;">Higher 💁‍♂️</span>
+                        <span style="float: left;">💁‍♂️ Lower</span>
+                        <span style="float: right;">Higher 💁‍♀️</span>
                         <input
                             type="range"
                             min={-100}
