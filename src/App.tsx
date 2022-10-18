@@ -66,8 +66,10 @@ const App: Component = () => {
                 <h1>The Sound Room</h1>
                 <div class={styles.inputs}>
                     <p>
-                        <a href={`/#${newRoom}`}>Create a new room</a> then share the page
-                        URL for others to join your room
+                        <a href={`/#${newRoom}`} target="_BLANK">
+                            Create a new room
+                        </a>{" "}
+                        then share the page URL for others to join your room
                     </p>
                 </div>
                 <div class={styles.pitchBox}>
@@ -91,18 +93,14 @@ const App: Component = () => {
                     <button onClick={() => socket.send(`astonished;${getMyPitch()}`)}>
                         😲
                     </button>
-                    <button onClick={() => socket.send(`cry;${getMyPitch()}`)}>
-                        😢
-                    </button>{" "}
+                    <button onClick={() => socket.send(`cry;${getMyPitch()}`)}>😢</button>{" "}
                     <button onClick={() => socket.send(`laugh;${getMyPitch()}`)}>
                         😂
                     </button>
                     <button onClick={() => socket.send(`rofl;${getMyPitch()}`)}>
                         🤣
                     </button>{" "}
-                    <button onClick={() => socket.send(`lol;${getMyPitch()}`)}>
-                        😜
-                    </button>
+                    <button onClick={() => socket.send(`lol;${getMyPitch()}`)}>😜</button>
                     <button onClick={() => socket.send(`santa;${getMyPitch()}`)}>
                         🎅
                     </button>
@@ -112,9 +110,7 @@ const App: Component = () => {
                     <button onClick={() => socket.send(`quack;${getMyPitch()}`)}>
                         🦆
                     </button>
-                    <button onClick={() => socket.send(`boo;${getMyPitch()}`)}>
-                        👎
-                    </button>{" "}
+                    <button onClick={() => socket.send(`boo;${getMyPitch()}`)}>👎</button>{" "}
                     <button onClick={() => socket.send(`wolf;${getMyPitch()}`)}>
                         🐺
                     </button>
