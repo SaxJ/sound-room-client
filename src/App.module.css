@@ -71,6 +71,9 @@
   margin: 10px;
   flex-grow: 1;
   user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .buttons button:active {
