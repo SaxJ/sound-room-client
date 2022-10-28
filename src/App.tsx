@@ -27,6 +27,7 @@ const audioFiles: Record<string, string> = {
     quack: "quack.wav",
     wolf: "wolf.wav",
     woof: "woof.wav",
+    gong: "gong.wav",
 };
 
 const App: Component = () => {
@@ -143,6 +144,9 @@ const App: Component = () => {
                     <button onClick={() => socket.send(`fart;${getMyPitch()}`)}>
                         💨
                     </button>{" "}
+                    <button onClick={() => socket.send(`gong;${getMyPitch()}`)}>
+                        <img src="/gong.png" />
+                    </button>
                     <button onClick={() => socket.send(`lame;${getMyPitch()}`)}>
                         🤡
                     </button>
