@@ -4,6 +4,7 @@ import logo from "./logo.svg";
 import styles from "./App.module.css";
 import * as Tone from "tone";
 import { PitchShift, Player, Volume } from "tone";
+import {createClient} from '@supabase/supabase-js';
 
 const audioLoaded = () => {
     console.log("audio files loaded");
@@ -34,6 +35,7 @@ const App: Component = () => {
     const roomName = window.location.hash.substring(1);
     const [getRoomStatus, setRoomStatus] = createSignal("disconnected");
     const [getMyPitch, setMyPitch] = createSignal(0);
+
 
     const socket = new WebSocket(
         `wss://sound-room-server-production.up.railway.app/${roomName}`
