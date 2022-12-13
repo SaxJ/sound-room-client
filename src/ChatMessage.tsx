@@ -1,5 +1,3 @@
-import { DocumentData } from "firebase/firestore";
-
 interface Props {
     message: string;
     avatar: string;
