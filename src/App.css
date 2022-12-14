@@ -1,0 +1,93 @@
+body {
+    background-color: #282c34;
+    font-family: 'Montserrat', sans-serif;
+    color: whitesmoke;
+    text-align: center;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 30px;
+    border-bottom: 1px solid #818095;
+    background-color: #17191E;
+}
+
+header button {
+    all: unset;
+    font-size: 20px;
+    color: white;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+section {
+    font-size: 20px;
+    margin: 0 auto;
+    padding: 0 300px;
+}
+
+section a {
+    text-decoration: underline;
+    color: white;
+    font-weight: 500;
+}
+
+.sign-in {
+    all: unset;
+    background-image: url("../public/btn_google_signin_light_normal_web@2x.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 210px;
+    height: 50px;
+}
+
+.sign-in:hover {
+    background-image: url("../public/btn_google_signin_light_focus_web@2x.png");
+}
+
+.sign-in:active {
+    background-image: url("../public/btn_google_signin_light_pressed_web@2x.png");
+}
+
+.pitch-slider {
+    margin: 0 20px;
+}
+
+.volume-slider {
+    margin: 0 20px;
+}
+
+.slider-container {
+    display: flex;
+    justify-content: center;
+}
+
+.sound-board button {
+    font-size: 100px;
+    width: 120px;
+    height: 120px;
+}
+
+.history {
+    position:absolute;
+    right: 0px;
+    top: 130px;
+    mask-image: linear-gradient(180deg, #000 60%, transparent);
+    display: flex;
+    flex-direction: column;
+    height: 800px;
+    overflow: hidden;
+}
+
+.message {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.message img {
+    width: 50px;
+    height: 50px;
+    margin-left: 50px;
+}
