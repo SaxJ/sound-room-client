@@ -27,6 +27,8 @@ const audioFiles: Record<string, string> = {
     wolf: "wolf.wav",
     woof: "woof.wav",
     gong: "gong.wav",
+    shh: "shh.wav",
+    wow: "wow.wav",
 };
 
 interface Props {

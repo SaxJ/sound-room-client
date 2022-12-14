@@ -12,8 +12,8 @@ export const SoundBoard = ({ pitchChange, handleMessage, volumeChange, pitch, vo
             <div className="slider-container">
                 <div className="pitch-slider">
                     <p>Pitch</p>
-                    <span style={{float: 'left'}}>💁‍♂️ Lower</span>
-                    <span style={{float: 'right'}}>Higher 💁‍♀️</span>
+                    <span style={{ float: 'left' }}>💁‍♂️ Lower</span>
+                    <span style={{ float: 'right' }}>Higher 💁‍♀️</span>
                     <input
                         value={pitch}
                         type="range"
@@ -24,8 +24,8 @@ export const SoundBoard = ({ pitchChange, handleMessage, volumeChange, pitch, vo
                 </div>
                 <div className="volume-slider">
                     <p>Volume</p>
-                    <span style={{float: 'left'}}>🔈 Quieter</span>
-                    <span style={{float: "right"}}>Louder 🔊</span>
+                    <span style={{ float: 'left' }}>🔈 Quieter</span>
+                    <span style={{ float: "right" }}>Louder 🔊</span>
                     <input
                         id="volume"
                         type="range"
@@ -87,6 +87,15 @@ export const SoundBoard = ({ pitchChange, handleMessage, volumeChange, pitch, vo
                 </button>
                 <button onClick={() => handleMessage(`lame;${pitch}`)}>
                     🤡
+                </button>
+                <button onClick={() => handleMessage(`shh;${pitch}`)}>
+                    🤫
+                </button>
+                <button onClick={() => handleMessage(`wow;${pitch}`)} style={{
+                    backgroundImage: 'url("wow.png")',
+                    backgroundRepeat: 'no-repeat',
+                }}>
+                    &nbsp;
                 </button>
             </div>
         </>
