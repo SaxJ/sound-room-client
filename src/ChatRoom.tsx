@@ -2,7 +2,7 @@ import { Auth } from "firebase/auth";
 import { addDoc, collection, Firestore, query, serverTimestamp, where } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import { useCollection } from "react-firebase-hooks/firestore";
-import { PitchShift, Player, Volume } from "tone";
+import { PitchShift, Player, Volume, ToneAudioBuffers } from "tone";
 import * as Tone from "tone";
 import { ChatMessage } from "./ChatMessage";
 import { CreateRoomLink } from "./CreateRoomLink";
@@ -37,6 +37,14 @@ interface Props {
 }
 
 export const ChatRoom = ({ firestore, auth }: Props) => {
+    const [buffers, setAudioBuffers] = useState<ToneAudioBuffers | null>(null);
+
+    useEffect(() => {
+        const samples = new ToneAudioBuffers(audioFiles, () => {
+            setAudioBuffers(samples);
+        });
+    }, []);
+
     const roomName = window.location.hash.substring(1);
 
     const messagesCollection = collection(firestore, 'messages');
@@ -52,13 +60,13 @@ export const ChatRoom = ({ firestore, auth }: Props) => {
 
             const volumeInput = (document.getElementById('volume') as HTMLInputElement)?.value;
             const volumeVal = (Number(volumeInput) * 5) - 50
-            const player = new Player(audioFiles[soundMessage]);
+            const player = new Player(buffers?.get(soundMessage));
             player.autostart = true;
             const volumeNode = new Volume(volumeVal);
             const pitchShift = new PitchShift(Number(pitchMessage));
             player.chain(volumeNode, pitchShift, Tone.Destination);
         })
-    }, [snapshot])
+    }, [snapshot, buffers])
 
     const sendMessage = (messageText: string) => {
         if (auth.currentUser === null) {
@@ -74,6 +82,14 @@ export const ChatRoom = ({ firestore, auth }: Props) => {
             room: roomName,
             localTime: (new Date()).getTime(),
         });
+    }
+
+    if (buffers === null) {
+        return (
+            <main>
+                <h1>Loading...</h1>
+            </main>
+        );
     }
 
     if (!roomName) {
