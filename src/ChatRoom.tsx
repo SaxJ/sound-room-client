@@ -55,12 +55,16 @@ export const ChatRoom = ({ firestore, auth }: Props) => {
     const [snapshot, ,] = useCollection(messageQuery);
 
     useEffect(() => {
+        if (buffers === null) {
+            return;
+        }
+
         snapshot?.docChanges().filter(doc => doc.type === 'added').forEach(doc => {
             const [soundMessage, pitchMessage] = doc.doc.get('text').split(";");
 
             const volumeInput = (document.getElementById('volume') as HTMLInputElement)?.value;
             const volumeVal = (Number(volumeInput) * 5) - 50
-            const player = new Player(buffers?.get(soundMessage));
+            const player = new Player(buffers.get(soundMessage));
             player.autostart = true;
             const volumeNode = new Volume(volumeVal);
             const pitchShift = new PitchShift(Number(pitchMessage));
