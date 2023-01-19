@@ -2,7 +2,7 @@ import { Auth } from "firebase/auth";
 import { addDoc, collection, Firestore, query, serverTimestamp, where } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import { useCollection } from "react-firebase-hooks/firestore";
-import { PitchShift, Player, Volume, ToneAudioBuffers } from "tone";
+import { PitchShift, Player, Volume, ToneAudioBuffers, Players } from "tone";
 import * as Tone from "tone";
 import { ChatMessage } from "./ChatMessage";
 import { CreateRoomLink } from "./CreateRoomLink";
@@ -37,11 +37,11 @@ interface Props {
 }
 
 export const ChatRoom = ({ firestore, auth }: Props) => {
-    const [buffers, setAudioBuffers] = useState<ToneAudioBuffers | null>(null);
+    const [players, setPlayers] = useState<Players | null>(null);
 
     useEffect(() => {
-        const samples = new ToneAudioBuffers(audioFiles, () => {
-            setAudioBuffers(samples);
+        const ps = new Players(audioFiles, () => {
+            setPlayers(ps);
         });
     }, []);
 
@@ -54,8 +54,12 @@ export const ChatRoom = ({ firestore, auth }: Props) => {
     const [volume, setVolume] = useState(5);
     const [snapshot, ,] = useCollection(messageQuery);
 
+    const [volumeNode,] =  useState(new Volume());
+    const [pitchShift,] = useState(new PitchShift(Number(pitch)));
+
     useEffect(() => {
-        if (buffers === null) {
+        debugger;
+        if (players === null) {
             return;
         }
 
@@ -64,13 +68,19 @@ export const ChatRoom = ({ firestore, auth }: Props) => {
 
             const volumeInput = (document.getElementById('volume') as HTMLInputElement)?.value;
             const volumeVal = (Number(volumeInput) * 5) - 50
-            const player = new Player(buffers.get(soundMessage));
-            player.autostart = true;
-            const volumeNode = new Volume(volumeVal);
-            const pitchShift = new PitchShift(Number(pitchMessage));
+            const player = players.player(soundMessage);
+
+            volumeNode.volume.value = volumeVal;
+            pitchShift.pitch = Number(pitchMessage);
+
             player.chain(volumeNode, pitchShift, Tone.Destination);
+            try {
+                player.start();
+            } catch {
+                console.warn('Cannot play audio before page interaction');
+            }
         })
-    }, [snapshot, buffers])
+    }, [snapshot, players, pitchShift, volumeNode])
 
     const sendMessage = (messageText: string) => {
         if (auth.currentUser === null) {
@@ -88,7 +98,7 @@ export const ChatRoom = ({ firestore, auth }: Props) => {
         });
     }
 
-    if (buffers === null) {
+    if (players === null) {
         return (
             <main>
                 <h1>Loading...</h1>
