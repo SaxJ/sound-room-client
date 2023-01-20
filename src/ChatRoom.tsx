@@ -2,7 +2,7 @@ import { Auth } from "firebase/auth";
 import { addDoc, collection, Firestore, query, serverTimestamp, where } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import { useCollection } from "react-firebase-hooks/firestore";
-import { PitchShift, Player, Volume, ToneAudioBuffers, Players } from "tone";
+import { PitchShift, Volume,  Players } from "tone";
 import * as Tone from "tone";
 import { ChatMessage } from "./ChatMessage";
 import { CreateRoomLink } from "./CreateRoomLink";
