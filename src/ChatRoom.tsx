@@ -58,12 +58,15 @@ export const ChatRoom = ({ firestore, auth }: Props) => {
     const [pitchShift,] = useState(new PitchShift(Number(pitch)));
 
     useEffect(() => {
-        debugger;
         if (players === null) {
             return;
         }
 
-        snapshot?.docChanges().filter(doc => doc.type === 'added').forEach(doc => {
+        snapshot?.docChanges().filter(doc => {
+            const now = (new Date()).getTime();
+            const timeDifference = now - doc.doc.get('localTime');
+            return doc.type === 'added' && timeDifference <= 1500;
+        }).forEach(doc => {
             const [soundMessage, pitchMessage] = doc.doc.get('text').split(";");
 
             const volumeInput = (document.getElementById('volume') as HTMLInputElement)?.value;
